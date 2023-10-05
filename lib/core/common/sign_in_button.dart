@@ -22,7 +22,7 @@ class SignInButton extends ConsumerWidget {
       padding: const EdgeInsets.all(18.0),
       child: Container(
         decoration: BoxDecoration(
-          gradient: AppColors.roundedButtonGradient,
+          color: AppColors.primary,
           borderRadius: BorderRadius.circular(30.0),
         ),
         child: ElevatedButton.icon(
@@ -36,6 +36,7 @@ class SignInButton extends ConsumerWidget {
             style: TextStyle(fontSize: 18),
           ),
           style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 227, 60, 115),
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),

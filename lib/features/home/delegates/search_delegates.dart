@@ -1,60 +1,62 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:reddit_tutorial/core/common/error_text.dart';
-// import 'package:reddit_tutorial/core/common/loader.dart';
-// import 'package:reddit_tutorial/features/community/controller/community_controller.dart';
-// import 'package:routemaster/routemaster.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// class SearchCommunityDelegate extends SearchDelegate {
-//   final WidgetRef ref;
-//   SearchCommunityDelegate(this.ref);
+import 'package:routemaster/routemaster.dart';
 
-//   @override
-//   List<Widget>? buildActions(BuildContext context) {
-//     return [
-//       IconButton(
-//         onPressed: () {
-//           query = '';
-//         },
-//         icon: const Icon(Icons.close),
-//       ),
-//     ];
-//   }
+import '../../../core/common/error_text.dart';
+import '../../../core/common/loader.dart';
+import '../../../core/constants/constants.dart';
+import '../../apis/controller/api_controller.dart';
 
-//   @override
-//   Widget? buildLeading(BuildContext context) {
-//     return null;
-//   }
+class SearchCommunityDelegate extends SearchDelegate {
+  final WidgetRef ref;
 
-//   @override
-//   Widget buildResults(BuildContext context) {
-//     return const SizedBox();
-//   }
+  SearchCommunityDelegate(this.ref);
 
-//   @override
-//   Widget buildSuggestions(BuildContext context) {
-//     return ref.watch(searchCommunityProvider(query)).when(
-//           data: (communites) => ListView.builder(
-//             itemCount: communites.length,
-//             itemBuilder: (BuildContext context, int index) {
-//               final community = communites[index];
-//               return ListTile(
-//                 leading: CircleAvatar(
-//                   backgroundImage: NetworkImage(community.avatar),
-//                 ),
-//                 title: Text('r/${community.name}'),
-//                 onTap: () => navigateToCommunity(context, community.name),
-//               );
-//             },
-//           ),
-//           error: (error, stackTrace) => ErrorText(
-//             error: error.toString(),
-//           ),
-//           loading: () => const Loader(),
-//         );
-//   }
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: const Icon(
+          Icons.close,
+        ),
+      ),
+    ];
+  }
 
-//   void navigateToCommunity(BuildContext context, String communityName) {
-//     Routemaster.of(context).push('/r/$communityName');
-//   }
-// }
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return const SizedBox();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return ref.watch(searchApisProvider(query)).when(
+        data: (communities) => ListView.builder(
+            itemCount: communities.length,
+            itemBuilder: (BuildContext context, int index) {
+              final community = communities[index];
+              return ListTile(
+                leading: const CircleAvatar(
+                  backgroundImage: AssetImage(Constants.logoPath),
+                ),
+                title: Text(community.api),
+                onTap: () => navigateToCommunity(context, community.api),
+              );
+            }),
+        error: (error, stackTrace) => ErrorText(error: error.toString()),
+        loading: () => const Loader());
+  }
+
+  void navigateToCommunity(BuildContext context, String communityName) {
+    Routemaster.of(context).push('/api');
+  }
+}

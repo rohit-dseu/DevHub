@@ -9,6 +9,7 @@ import '../../../core/constants/constants.dart';
 import '../../../theme/pallate.dart';
 import '../../apis/views/add_api.dart';
 import '../../auth/controller/auth_controller.dart';
+import '../delegates/search_delegates.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -43,7 +44,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: SearchTab(
-          onTap: () {},
+          onTap: () {
+            showSearch(
+              context: context,
+              delegate: SearchCommunityDelegate(ref),
+            );
+          },
         ),
         centerTitle: false,
         actions: [

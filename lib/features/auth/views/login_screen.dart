@@ -29,7 +29,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         body: isLoading
             ? const Loader()
             : Container(
-                decoration: BoxDecoration(color: Colors.black),
+                decoration: BoxDecoration(
+                  gradient: AppColors.greyGradient,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

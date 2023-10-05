@@ -2,6 +2,7 @@ import 'package:devhub/core/common/app_bar_tabs.dart';
 import 'package:devhub/features/packages/views/categories.dart';
 import 'package:devhub/features/packages/views/premium.dart';
 import 'package:devhub/features/packages/views/top_charts_screen.dart';
+import 'package:devhub/features/packages/views/for_you__packages_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -34,8 +35,8 @@ class _PackageScreenState extends ConsumerState<PackageScreen> {
           ),
         ),
         body: TabBarView(
-          children: [
-            ForYouScreen(),
+          children: <Widget>[
+            ForYouPackagesScreen(),
             TopChartsScreen(),
             Premium(),
             Categories(),

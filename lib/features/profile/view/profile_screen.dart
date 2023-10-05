@@ -1,7 +1,9 @@
 import 'package:devhub/core/constants/constants.dart';
 import 'package:devhub/theme/pallate.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:routemaster/routemaster.dart';
 
 import '../../apis/views/add_api.dart';
@@ -18,7 +20,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print('print');
@@ -212,30 +213,38 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                               const SizedBox(
                                 height: 20.0,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.person,
-                                    color: Colors.lightGreen[400],
-                                    size: 35,
-                                  ),
-                                  const SizedBox(
-                                    width: 20.0,
-                                  ),
-                                  const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "About Us",
-                                        style: TextStyle(
-                                          fontSize: 15.0,
+                              InkWell(
+                                onTap: () {
+                                  FirebaseAuth.instance.signOut();
+                                  GoogleSignIn().disconnect();
+                                  
+
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.logout,
+                                      color: Colors.lightGreen[400],
+                                      size: 35,
+                                    ),
+                                    const SizedBox(
+                                      width: 20.0,
+                                    ),
+                                    const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Log Out",
+                                          style: TextStyle(
+                                            fontSize: 15.0,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  )
-                                ],
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),

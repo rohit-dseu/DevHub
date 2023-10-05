@@ -71,4 +71,29 @@ class ApiRepository {
       },
     );
   }
+
+  Stream<List<ApiModel>> searchCommunity(String query) {
+    return _apis //   Search Algorithm
+        .where(
+          'API',
+          isGreaterThanOrEqualTo:
+              query.isEmpty ? 0 : query, // no suggetions if query is 0
+          isLessThan: query.isEmpty
+              ? null
+              : query.substring(0, query.length - 1) +
+                  String.fromCharCode(
+                    query.codeUnitAt(query.length - 1) + 1,
+                  ),
+        )
+        .snapshots()
+        .distinct()
+        .map((event) {
+      List<ApiModel> communities = [];
+      for (var community in event.docs) {
+        communities
+            .add(ApiModel.fromMap(community.data() as Map<String, dynamic>));
+      }
+      return communities;
+    });
+  }
 }
