@@ -37,7 +37,10 @@ class AuthController extends StateNotifier<bool> {
     state = false;
     // How I know this function have error ? we can use try catch block? NO for all this we have dependency fpdart a technique to handle errors
     user.fold(
-      (l) => showSnackBar(context, l.message),
+      (l) {
+        print(l.error);
+        return showSnackBar(context, l.error);
+      },
       (userModel) =>
           _ref.read(userProvider.notifier).update((state) => userModel),
     ); // l means failure and r means success

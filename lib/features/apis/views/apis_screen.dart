@@ -1,8 +1,8 @@
 import 'package:devhub/core/common/app_bar_tabs.dart';
 import 'package:devhub/features/apis/views/categories.dart';
 import 'package:devhub/features/apis/views/premium.dart';
-import 'package:devhub/features/packages/views/for_you_screen.dart';
-import 'package:devhub/features/packages/views/top_charts_screen.dart';
+import 'package:devhub/features/apis/views/for_you_screen.dart';
+import 'package:devhub/features/apis/views/top_charts_screen.dart';
 import 'package:devhub/theme/pallate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

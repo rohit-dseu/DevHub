@@ -6,7 +6,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/constants/constants.dart';
 import '../../../core/constants/firebase_constants.dart';
 import '../../../core/failure.dart';
 import '../../../core/providers/firebase_providers.dart';
@@ -15,16 +14,23 @@ import '../../../model/user.dart';
 
 // this is completely for my database calls
 
-final authRepositoryProvider = Provider((ref) => AuthRepository(
-    // Now we are using provider for firebase instance as well insted of creating like FirebaseFirestore.instance
+final authRepositoryProvider = Provider(
+  (ref) => AuthRepository(
+    // Now we are using provider for firebase instance as well instead of creating like FirebaseFirestore.instance
     // How I am going to use Firebase provers into this provider?, that is that **ref** is for
     // ref allows us to talk with other providers. IT provides us many methods ref.Read() & ref.Watch most is most important
     // ref.read is usually used out side of build Context means you don't want to read any changes mad in providers
     firestore: ref.read(
-        firestoreProvider), //It gives the instance if firebaseFirestore class
+      firestoreProvider,
+    ), //It gives the instance if firebaseFirestore class
     auth: ref.read(
-        authProvider), // It all provers coming from firebase_providers.dart
-    googleSignIn: ref.read(googleSignInProvider)));
+      authProvider,
+    ), // It all provers coming from firebase_providers.dart
+    googleSignIn: ref.read(
+      googleSignInProvider,
+    ),
+  ),
+);
 
 class AuthRepository {
   final FirebaseFirestore _firestore;
@@ -101,7 +107,7 @@ class AuthRepository {
     } catch (e) {
       // If any error occur din above code
       // ScaffoldMessenger(child: ,) // for this I need context and I don;t want to use context in this class for this we have authController class
-      return left(Failure(e.toString()));
+      return left(Failure(error: e.toString()));
     }
   }
 

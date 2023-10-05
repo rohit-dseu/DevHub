@@ -7,6 +7,7 @@ import 'package:routemaster/routemaster.dart';
 import '../../../core/common/search_tab.dart';
 import '../../../core/constants/constants.dart';
 import '../../../theme/pallate.dart';
+import '../../apis/views/add_api.dart';
 import '../../auth/controller/auth_controller.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -48,18 +49,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Routemaster.of(context).push('/add-post');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const AddApi(),
+                ),
+              );
             },
             icon: const Icon(Icons.add),
           ),
-          Builder(builder: (context) {
-            return IconButton(
-              icon: CircleAvatar(
-                backgroundImage: NetworkImage(user.profilePic),
-              ),
-              onPressed: () => displayEndDrawer(context),
-            );
-          }),
+          Builder(
+            builder: (context) {
+              return IconButton(
+                icon: CircleAvatar(
+                  backgroundImage: NetworkImage(user.profilePic),
+                ),
+                onPressed: () => Routemaster.of(context).push("/profile"),
+              );
+            },
+          ),
         ],
       ),
       body: Constants.tabWidgets[_page],
@@ -67,7 +74,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ? null
           : CupertinoTabBar(
               activeColor: currentTheme.iconTheme.color,
-              backgroundColor: currentTheme.backgroundColor,
+              backgroundColor: AppColors.black,
               items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
