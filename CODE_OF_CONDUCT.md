@@ -40,7 +40,7 @@ Community members who violate this Code of Conduct may face temporary or permane
 
 ## Reporting
 
-If you believe you have witnessed or experienced a violation of this Code of Conduct, please report it to the project maintainers by emailing [email@example.com]. All reports will be treated confidentially.
+If you believe you have witnessed or experienced a violation of this Code of Conduct, please report it to the project maintainers by emailing [devhub264@dmail.com]. All reports will be treated confidentially.
 
 ## Attribution
 
@@ -48,4 +48,4 @@ This Code of Conduct is adapted from the Contributor Covenant, version 2.0, avai
 
 For answers to common questions about this code of conduct, see [https://www.contributor-covenant.org/faq](https://www.contributor-covenant.org/faq).
 
-[Note: Replace `[email@example.com]` with a valid email address for reporting violations. Also, consider adding a section that specifies the project maintainers' contact information.]
+
