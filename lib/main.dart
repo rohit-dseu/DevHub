@@ -55,12 +55,10 @@ class _MyAppState extends ConsumerState<MyApp> {
               routesBuilder: (context) {
                 if (data != null) {
                   print('data != null ? : $data');
-                  // if (userModel != null) {
                   if (ref.watch(userProvider) != null) {
                     print(
                         'userProvider.notifier: ${ref.read(userProvider.notifier)}');
                     return loggedInRouter;
-                    // }
                   } else {
                     getData(ref, data);
                   }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:devhub/features/apis/repository/apis_repository.dart';
 import 'package:devhub/model/api.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,10 @@ final getAllApisProvider = StreamProvider((ref) {
 final getTopPickApisProvider = StreamProvider((ref) {
   final apiController = ref.watch(apiControllerProvider.notifier);
   return apiController.getTopPicks();
+});
+final searchApisProvider = StreamProvider.family((ref,String query) {
+  final apiController = ref.watch(apiControllerProvider.notifier);
+  return apiController.searchCommunity(query);
 });
 
 final apiControllerProvider = StateNotifierProvider<ApiController, bool>((ref) {
@@ -81,4 +86,8 @@ class ApiController extends StateNotifier<bool> {
   Stream<List<ApiModel>> getTopPicks() {
     return _apiRepository.getTopPicks();
   }
+    Stream<List<ApiModel>> searchCommunity(String query) {
+    return _apiRepository.searchCommunity(query);
+  }
+
 }

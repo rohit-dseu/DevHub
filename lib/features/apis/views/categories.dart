@@ -13,16 +13,18 @@ class Categories extends ConsumerWidget {
       padding: const EdgeInsets.all(8.0),
       child: ListView(
         scrollDirection: Axis.vertical,
-        children: List.generate(30, (index) {
-          return const Padding(
-            padding: EdgeInsets.all(8.0),
+        children: Constants.categories.keys.map((categoryName) {
+          final imagePath = Constants.categories[categoryName] ??
+              ''; // Get the image path for the category
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
             child: CategoryTile(
               imagePath: Constants.logoPath,
-              title: 'Hello World',
+              title: categoryName,
               totalPosts: 100,
             ),
           );
-        }),
+        }).toList(),
       ),
     );
   }

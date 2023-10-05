@@ -54,6 +54,15 @@ class AppColors {
       Color.fromARGB(255, 158, 145, 145),
     ],
   );
+  static const LinearGradient greyGradient = LinearGradient(
+    begin: FractionalOffset.bottomLeft,
+    end: FractionalOffset.topRight,
+    colors: <Color>[
+      Color.fromARGB(255, 186, 144, 180),
+      Color.fromARGB(255, 60, 58, 58),
+      Color.fromARGB(255, 21, 21, 21),
+    ],
+  );
 
   /// **************   Box Shadows   *******************
 
