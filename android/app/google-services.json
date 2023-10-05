@@ -1,49 +1,42 @@
 {
   "project_info": {
-    "project_number": "77157915215",
-    "project_id": "devhub-c22ff",
-    "storage_bucket": "devhub-c22ff.appspot.com"
+    "project_number": "219071919379",
+    "project_id": "devhub-d6051",
+    "storage_bucket": "devhub-d6051.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:77157915215:android:4ef8ebbdb6022a22a2683a",
+        "mobilesdk_app_id": "1:219071919379:android:5bebcb196b7b706a9856e6",
         "android_client_info": {
           "package_name": "com.devhub.devhub"
         }
       },
       "oauth_client": [
         {
-          "client_id": "77157915215-3pffbkmbo0m6pjpc6g6q8bjlt48mvodh.apps.googleusercontent.com",
+          "client_id": "219071919379-v101v96pqggrsmpukkepn16vcs28lcoj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.devhub.devhub",
-            "certificate_hash": "2a8890b4a2ebc7fbd584f779314db7626d7ff27e"
+            "certificate_hash": "cdd82865f6ba49585ad3e4a1f8d0541d9aafb3ea"
           }
         },
         {
-          "client_id": "77157915215-6e48b1bnlj24dgu9pvf2cfnbui42aej8.apps.googleusercontent.com",
+          "client_id": "219071919379-7ng2s225326dh9ahl57kpccr8n4213qr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDhvmJcWFr1GIUDa86327SRYoIJZH0t1nw"
+          "current_key": "AIzaSyDfmtzuw3r6jrZ8kRGBLLi0aL5HecZeth4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "77157915215-6e48b1bnlj24dgu9pvf2cfnbui42aej8.apps.googleusercontent.com",
+              "client_id": "219071919379-7ng2s225326dh9ahl57kpccr8n4213qr.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "77157915215-g6qk9bhp7on70vkv3t61ekk5s0cds55l.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.devhub.devhub.RunnerTests"
-              }
             }
           ]
         }

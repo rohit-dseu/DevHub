@@ -2,70 +2,133 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/utils.dart';
+
 final themeNotifierProvider =
     StateNotifierProvider<ThemeNotifier, ThemeData>((ref) {
   return ThemeNotifier();
 });
 
-class Pallete {
-  // Colors
-  static const blackColor = Color.fromRGBO(1, 1, 1, 1); // primary color
-  static const greyColor = Color.fromRGBO(26, 39, 45, 1); // secondary color
-  static const drawerColor = Color.fromRGBO(18, 18, 18, 1);
-  static const purpleBgColor = Color.fromARGB(255, 248, 247, 250);
-  static const pink = Color(0xffC026D3);
-  static LinearGradient pinkGradient = const LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+class AppColors {
+  /// **************    Gradients   *******************
+  static LinearGradient roundedButtonGradient = LinearGradient(
+    begin: FractionalOffset.bottomLeft,
+    end: FractionalOffset.topRight,
+    colors: <Color>[
+      Color(
+        getColorHexFromStr("#FE685F"),
+      ),
+      Color(
+        getColorHexFromStr("#FB578B"),
+      ),
+    ],
+  );
+  static LinearGradient orangeGradient = LinearGradient(
+    begin: FractionalOffset.topLeft,
+    end: FractionalOffset.topRight,
+    colors: <Color>[
+      Color(
+        getColorHexFromStr("#fe8c00"),
+      ),
+      Color(
+        getColorHexFromStr("#f83600"),
+      ),
+    ],
+  );
+  static LinearGradient blueGradient = const LinearGradient(
+    begin: FractionalOffset.bottomLeft,
+    end: FractionalOffset.topRight,
     colors: [
-      Color.fromARGB(255, 138, 47, 195),
-      Color.fromARGB(255, 107, 84, 121),
+      Color.fromARGB(255, 68, 153, 237),
+      Color(0xFF418FDE),
+      Color.fromARGB(255, 47, 67, 141),
+    ],
+    // stops: [0.0, 1.0],
+  );
+
+  static const LinearGradient roundedButtonDisabledGradient = LinearGradient(
+    begin: FractionalOffset.bottomLeft,
+    end: FractionalOffset.topRight,
+    colors: <Color>[
+      Color.fromARGB(255, 214, 202, 202),
+      Color.fromARGB(255, 158, 145, 145),
     ],
   );
 
-  static const whiteColor = Colors.white;
-  static var redColor = Colors.red.shade500;
-  static var blueColor = Colors.blue.shade300;
+  /// **************   Box Shadows   *******************
+
+  static const List<BoxShadow> carouselSliderShadow = [
+    BoxShadow(
+      color: lightShadowColor,
+      blurRadius: 32.0,
+      spreadRadius: 0.5,
+      offset: Offset(1.0, 2.0), // shadow direction: bottom right
+    ),
+  ];
+
+  /// **************   General Colors   *******************
+
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color grey = Color.fromARGB(201, 151, 151, 151);
+  static const Color black = Color.fromARGB(255, 48, 48, 48);
+  static const Color orange = Colors.orangeAccent;
+  static Color lightWhite = Colors.white.withOpacity(
+    0.7,
+  );
+  static Color lightBlack = const Color.fromARGB(122, 0, 0, 0);
+  static const Color green = Color.fromARGB(255, 78, 193, 82);
+  static const Color yellow = Color.fromARGB(255, 213, 244, 15);
+  static const Color red = Colors.red;
+  static const Color blue = Colors.blue;
+  static const Color pinkAccent = Colors.pinkAccent;
+
+  /// **************   Specific Colors   *******************
+
+  static const Color primary = Colors.pinkAccent;
+  static const Color primaryDark = Color.fromARGB(255, 238, 72, 50);
+
+  // Disabled Color
+  static const Color mDisabledColor = Color.fromARGB(175, 162, 162, 162);
+
+  static const Color scaffoldBackgroundColor =
+      Color.fromARGB(255, 245, 250, 255);
+  static const Color subTitleColor = Color.fromARGB(255, 110, 110, 110);
+  static const Color lightShadowColor = Color.fromARGB(71, 123, 123, 123);
 
   // Themes
   static var darkModeAppTheme = ThemeData.dark().copyWith(
-    scaffoldBackgroundColor: blackColor,
-    cardColor: greyColor,
+    scaffoldBackgroundColor: black,
+    cardColor: grey,
     appBarTheme: const AppBarTheme(
-      backgroundColor: drawerColor,
+      backgroundColor: black,
       iconTheme: IconThemeData(
-        color: whiteColor,
+        color: white,
       ),
       titleTextStyle: TextStyle(
-        color: whiteColor,
+        color: white,
       ),
     ),
-    drawerTheme: const DrawerThemeData(
-      backgroundColor: drawerColor,
-    ),
-    primaryColor: redColor,
-    backgroundColor:
-        drawerColor, // will be used as alternative background color
+    primaryColor: red,
   );
 
   static var lightModeAppTheme = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: pink,
-    cardColor: greyColor,
+    scaffoldBackgroundColor: white,
+    cardColor: grey,
     appBarTheme: const AppBarTheme(
-      backgroundColor: whiteColor,
+      backgroundColor: white,
       elevation: 0,
       titleTextStyle: TextStyle(
-        color: blackColor,
+        color: black,
       ),
       iconTheme: IconThemeData(
-        color: blackColor,
+        color: black,
       ),
     ),
     drawerTheme: const DrawerThemeData(
-      backgroundColor: whiteColor,
+      backgroundColor: white,
     ),
-    primaryColor: redColor,
-    backgroundColor: pink,
+    primaryColor: red,
+    backgroundColor: white,
   );
 }
 
@@ -74,7 +137,7 @@ class ThemeNotifier extends StateNotifier<ThemeData> {
   ThemeNotifier({ThemeMode mode = ThemeMode.dark})
       : _mode = mode,
         super(
-          Pallete.darkModeAppTheme,
+          AppColors.darkModeAppTheme,
         ) {
     getTheme();
   }
@@ -87,10 +150,10 @@ class ThemeNotifier extends StateNotifier<ThemeData> {
 
     if (theme == 'light') {
       _mode = ThemeMode.light;
-      state = Pallete.lightModeAppTheme;
+      state = AppColors.lightModeAppTheme;
     } else {
       _mode = ThemeMode.dark;
-      state = Pallete.darkModeAppTheme;
+      state = AppColors.darkModeAppTheme;
     }
   }
 
@@ -99,11 +162,11 @@ class ThemeNotifier extends StateNotifier<ThemeData> {
 
     if (_mode == ThemeMode.dark) {
       _mode = ThemeMode.light;
-      state = Pallete.lightModeAppTheme;
+      state = AppColors.lightModeAppTheme;
       prefs.setString('theme', 'light');
     } else {
       _mode = ThemeMode.dark;
-      state = Pallete.darkModeAppTheme;
+      state = AppColors.darkModeAppTheme;
       prefs.setString('theme', 'dark');
     }
   }

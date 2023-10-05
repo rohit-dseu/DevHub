@@ -15,7 +15,7 @@ class SearchTab extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Pallete.greyColor,
+          color: Color.fromARGB(173, 83, 83, 83),
           borderRadius: BorderRadius.circular(25),
         ),
         child: const Row(

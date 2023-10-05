@@ -23,9 +23,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -44,38 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDUafadY7LH5Cp0QwJE8RffoOOzDf-4dpg',
-    appId: '1:77157915215:web:325187d4e0fd7ec4a2683a',
-    messagingSenderId: '77157915215',
-    projectId: 'devhub-c22ff',
-    authDomain: 'devhub-c22ff.firebaseapp.com',
-    storageBucket: 'devhub-c22ff.appspot.com',
-    measurementId: 'G-FXFG03SN9D',
+    apiKey: 'AIzaSyB5ym0vg5x9vjf4RjM48E2ecKCSCYuFXdI',
+    appId: '1:219071919379:web:7a1f09b5af6b557d9856e6',
+    messagingSenderId: '219071919379',
+    projectId: 'devhub-d6051',
+    authDomain: 'devhub-d6051.firebaseapp.com',
+    storageBucket: 'devhub-d6051.appspot.com',
+    measurementId: 'G-B91BC5F3EP',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDhvmJcWFr1GIUDa86327SRYoIJZH0t1nw',
-    appId: '1:77157915215:android:4ef8ebbdb6022a22a2683a',
-    messagingSenderId: '77157915215',
-    projectId: 'devhub-c22ff',
-    storageBucket: 'devhub-c22ff.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCn_foX87-WCIC5sCtWWCodm0NjKEq-u7I',
-    appId: '1:77157915215:ios:062e1fec592beefba2683a',
-    messagingSenderId: '77157915215',
-    projectId: 'devhub-c22ff',
-    storageBucket: 'devhub-c22ff.appspot.com',
-    iosBundleId: 'com.devhub.devhub',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCn_foX87-WCIC5sCtWWCodm0NjKEq-u7I',
-    appId: '1:77157915215:ios:518016c94b899fb7a2683a',
-    messagingSenderId: '77157915215',
-    projectId: 'devhub-c22ff',
-    storageBucket: 'devhub-c22ff.appspot.com',
-    iosBundleId: 'com.devhub.devhub.RunnerTests',
+    apiKey: 'AIzaSyDfmtzuw3r6jrZ8kRGBLLi0aL5HecZeth4',
+    appId: '1:219071919379:android:5bebcb196b7b706a9856e6',
+    messagingSenderId: '219071919379',
+    projectId: 'devhub-d6051',
+    storageBucket: 'devhub-d6051.appspot.com',
   );
 }
